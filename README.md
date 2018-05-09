@@ -1,7 +1,7 @@
 What i've been doing today:
 
-(https://github.com/exitlol/hello-world "First ever repo")
+[My first repo ever](https://github.com/exitlol/hello-world)
 
-(https://github.com/exitlol/patchwork "Git-it exercise")
+[Git excercise](https://github.com/exitlol/patchwork)
 
-(https://github.com/exitlol/git-lesson-repository"Greenfox Git repo project")
+[Greenfox repo project](https://github.com/exitlol/git-lesson-repository)
