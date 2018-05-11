@@ -16,7 +16,6 @@ let star: string = '*';
 
 for (let i: number = lineCount; i >= 0; i--) {
   let spaces: string = '';
-  // console.log(`Spacecount is now: ${spaceCount}`);
   for (let j: number = 0; j <= i; j++) {
     spaces += ' ';
   }
