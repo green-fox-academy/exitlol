@@ -14,10 +14,10 @@ export { };
 let lineCount: number = 4;
 let star: string = '*';
 
-for (let i: number = lineCount; i >= 0; i--) {
-  let spaces: string = '';
-  for (let j: number = 0; j <= i; j++) {
-    spaces += ' ';
+for (let i: number = lineCount; i >= 0; i--) {  // checking number of lines
+  let spaces: string = ''; // 
+  for (let j: number = 0; j <= i; j++) { //
+    spaces += ' '; // concatenating spaces 
   }
   console.log(`${spaces}${star}`);
   star += '**';
