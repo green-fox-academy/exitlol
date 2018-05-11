@@ -22,5 +22,3 @@ for (let i: number = lineCount; i >= 0; i--) {  // checking number of lines
   console.log(`${spaces}${star}`);
   star += '**';
 }
-
-
