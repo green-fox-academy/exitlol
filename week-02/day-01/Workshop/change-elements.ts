@@ -7,10 +7,10 @@ export{};
 
 let numList = [1, 2, 3, 8, 5, 6];
 
-numList = numList.map((arraVal, index) => {
-  if (arraVal !== index+1) {
-    arraVal = index+1;
+numList = numList.map((arrayVal, index) => {
+  if (arrayVal !== index+1) {
+    arrayVal = index+1;
   }
-  return arraVal;
+  return arrayVal;
 })
 console.log(numList);
