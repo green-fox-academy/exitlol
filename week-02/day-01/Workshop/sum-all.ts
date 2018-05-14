@@ -11,3 +11,10 @@ ai.map(arrayVal => {
   sum += arrayVal;
 });
 console.log(sum);
+
+// another solution
+
+const addition = (accumulator, currentValue) => accumulator + currentValue;
+
+let newAi = ai.reduce(addition);
+console.log(newAi);
