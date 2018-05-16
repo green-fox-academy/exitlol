@@ -1,4 +1,4 @@
-export{};
+export { };
 'use strict';
 
 let a: number = 24;
@@ -6,8 +6,8 @@ let out: number = 0;
 
 // if a is even increment out by one
 
-if (a % 2 ==0 ) {
-  out ++;
+if (a % 2 === 0) {
+  out++;
   console.log(out);
 } else {
   console.log('a is not even');
@@ -21,7 +21,7 @@ let out2: string = '';
 // if more than 20 set out2 to "More!"
 if (b > 10 && b < 20) {
   console.log('Sweet!');
-} else if( b < 10) {
+} else if (b < 10) {
   out2 = 'Less!';
 } else if (b > 20) {
   out2 = 'More!';
@@ -36,15 +36,15 @@ let isBonus: boolean = false;
 // if credits are smaller than 50,
 // and is_bonus is false decrement c by 1
 // if is_bonus is true c should remain the same
-if (credits >=50 && isBonus == false) {
-  c-= 2;
+if (credits >= 50 && isBonus === false) {
+  c -= 2;
   console.log(c);
-} else if(credits <= 50 && isBonus == false) {
-  c-= 1;
+} else if (credits <= 50 && isBonus === false) {
+  c -= 1;
   console.log(c);
 }
 
-let d: number =  8;
+let d: number = 8;
 let time: number = 120;
 let out3: string = '';
 
@@ -54,7 +54,7 @@ let out3: string = '';
 // if time is more than 200
 // set out3 to "Time out"
 // otherwise set out3 to "Run Forest Run!"
-if (d % 4 == 0 && time <= 200){
+if (d % 4 === 0 && time <= 200) {
   out3 = 'check';
   console.log(out3);
 } else if (time > 200) {
