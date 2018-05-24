@@ -1,4 +1,4 @@
-export{};
+export { };
 'use strict';
 
 // -  Create an array named `numList` with the following content: `[1, 2, 3, 8, 5, 6]`
@@ -8,8 +8,8 @@ export{};
 let numList = [1, 2, 3, 8, 5, 6];
 
 numList = numList.map((arrayVal, index) => {
-  if (arrayVal !== index+1) {
-    arrayVal = index+1;
+  if (arrayVal !== index + 1) {
+    arrayVal = index + 1;
   }
   return arrayVal;
 })

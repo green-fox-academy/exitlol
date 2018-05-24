@@ -7,9 +7,7 @@ export {};
 let ai = [3, 4, 5, 6, 7];
 let sum: number = 0;
 
-ai.map(arrayVal => {
-  sum += arrayVal;
-});
+ai.map(arrayVal => {sum += arrayVal});
 console.log(sum);
 
 // another solution

@@ -1,4 +1,4 @@
-export{};
+export { };
 'use strict';
 
 // -  Create a variable named `numList` with the following content: `[1, 2, 3, 4, 5]`
@@ -8,7 +8,7 @@ export{};
 let numList = [1, 2, 3, 4, 5];
 
 numList = numList.map((arrayVal, index) => {
-  if (index == 2) {
+  if (index === 2) {
     arrayVal++;
   }
   return arrayVal;
