@@ -17,6 +17,8 @@ function sumDigit(n: number): number {
 
 console.log(sumDigit(126));
 
+// Another approach with less variables and reversed logic
+
 function summary(n: number): number {
   let sum: number = n % 10;
   if (n < 10) {
