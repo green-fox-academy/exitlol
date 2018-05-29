@@ -1,4 +1,4 @@
-export {};
+export { };
 'use strict';
 
 // -  Create an array variable named `animals`
@@ -7,8 +7,5 @@ export {};
 
 let animals = ['kuty', 'macsk', 'cic'];
 
-animals = animals.map((arrayVal, index) => {
-  arrayVal = arrayVal + 'a';
-  return arrayVal;
-})
+animals = animals.map(arrayVal => (arrayVal += 'a'));
 console.log(animals);
