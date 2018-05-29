@@ -10,13 +10,13 @@ const ctx = canvas.getContext('2d');
 // Draw 3 squares with that function.
 // Avoid code duplication.
 
-let colors: string[] = ['red','green','blue'];
+let colors: string[] = ['red', 'green', 'blue'];
 
-function drawRect (size) {
-  for(let i: number = 0; i < 3; i++) {
+function drawRect(size) {
+  for (let i: number = 0; i < 3; i++) {
     ctx.fillStyle = colors[i];
-    ctx.fillRect(300-size/2,200-size/2, (size), (size));
-    size -=10;
+    ctx.fillRect(300 - size / 2, 200 - size / 2, (size), (size));
+    size -= 10;
   }
 }
 
