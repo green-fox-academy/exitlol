@@ -41,4 +41,4 @@ class Rectangle {
   }
 }
 
-let r: Rectangle = new Rectangle(0, 0, 200, 6, 6);
+let r: Rectangle = new Rectangle(0, 0, 200, 6, 7);
