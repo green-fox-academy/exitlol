@@ -8,24 +8,11 @@ console.log(containsSeven(numbers));
 // Do this again with a different solution using different list functions!
 let spyGlass: string = '';
 
-/*function containsSeven (numbers) {
-  for(let i: number = 0; i < numbers.length; i++) {
-    if(numbers[i] === 7) {
-      spyGlass = 'Hoooraay!';
-      return spyGlass;
-    } else {
-      spyGlass = 'Nooooo';
-    }
-  }
-  return spyGlass;
-}
-*/
-
 function containsSeven (numbers) {
   if (numbers.every(numbers => numbers !== 7)) {
-    spyGlass = 'Nooooooo'
+    spyGlass = 'Nooooooo';
   } else {
-    spyGlass = 'Yaaaaaaaaay'
+    spyGlass = 'Yaaaaaaaaay';
   }
   return spyGlass;
 }
