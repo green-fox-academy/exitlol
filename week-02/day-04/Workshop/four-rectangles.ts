@@ -7,10 +7,10 @@ const ctx = canvas.getContext('2d');
 // Draw four different size and color rectangles.
 // Avoid code duplication.
 
-function drawRect () {
-  for(let i: number = 0; i < 4; i ++) {
+function drawRect() {
+  for (let i: number = 0; i < 4; i++) {
     ctx.fillStyle = 'red';
-    ctx.fillRect((0+i*100), (0+i*100),(50+i*10), (50+i*10));
+    ctx.fillRect((0 + i * 100), (0 + i * 100), (50 + i * 10), (50 + i * 10));
   }
 }
 
