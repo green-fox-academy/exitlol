@@ -8,7 +8,7 @@ export{};
 
 let typo: string = 'kuty';
 
-function appendA(inStr: string) {
+function appendA(inStr: string): string {
   return inStr + 'a';
 };
 console.log(appendA(typo));
