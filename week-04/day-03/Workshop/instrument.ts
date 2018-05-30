@@ -1,9 +1,9 @@
 'use strict';
 
 abstract class Instrument {
-  name: string;
+  protected name: string;
  
-  play() {}
+  abstract play(): void;
 }
 
 abstract class StringedInstruments extends Instrument {
@@ -11,9 +11,11 @@ abstract class StringedInstruments extends Instrument {
   sounds: string;
   strings: number;
 
-  sound() {}
+  abstract sound(): string;
 
-  play () {}
+  play(): string {
+    return this.sound()
+  }
 }
 
 
@@ -27,10 +29,6 @@ class ElectricGuitar extends StringedInstruments  {
   }
 
   sound(): string {
-    return this.sounds;
-  }
-
-  play(): string {
     return `${this.name}, a ${this.numberOfStrings}-stringed instrument that goes ${this.sounds}.`;
   }
 }
