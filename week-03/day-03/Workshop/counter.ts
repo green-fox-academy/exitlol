@@ -22,9 +22,9 @@ class Counter {
     }
   }
   get () {
-    console.log(this.integer.toString());
+    return this.integer;
   }
-  reset () {
+  reset (): void {
     this.integer = this.baseValue;
   }
 }
