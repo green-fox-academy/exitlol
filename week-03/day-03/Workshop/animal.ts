@@ -10,14 +10,14 @@ class Animal {
     this.thirst = 50;
   }
 
-  eat() {
+  eat():void  {
     this.hunger -= 1;
   }
-  drink() {
+  drink(): void {
     this.thirst -= 1;
   }
 
-  play() {
+  play(): void {
     this.hunger += 1;
     this.thirst += 1;
   }
