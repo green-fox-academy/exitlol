@@ -2,7 +2,6 @@
 export { };
 
 class Teacher {
-  constructor () {}
 
   answer () {
    return 'You are not that dumb at all!';
@@ -13,7 +12,6 @@ class Teacher {
 }
 
 class Student {
-  constructor() {}
 
   learn () {
     return 'I\'m dumb, i don\'t understand stuff';
@@ -23,7 +21,7 @@ class Student {
   }
 }
 
-let bela = new Student;
-let eva = new Teacher;
+let bela = new Student();
+let eva = new Teacher();
 console.log(eva.teach(bela));
 console.log(bela.question(eva));
