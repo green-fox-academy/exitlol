@@ -97,14 +97,14 @@ class Mammal extends Animal {
   }
 }
 
-let reptile = new Reptile('Crocodile');
-let mammal = new Mammal('Koala');
-let bird = new Bird('Parrot');
+// let reptile = new Reptile('Crocodile');
+// let mammal = new Mammal('Koala');
+// let bird = new Bird('Parrot');
 
-console.log('How do you breed?\n');
-console.log(`A ${reptile.getName()} is breeding by ${reptile.breed()}
-Has teeth? ${reptile.hasTeeth()}. And how big it's poop is? ${reptile.poop()}`);
-console.log(`A ${mammal.getName()} is breeding by ${mammal.breed()}
-Has teeth? ${mammal.hasTeeth()}. And how big it's poop is? ${mammal.poop()}`);
-console.log(`A ${bird.getName()} is breeding by ${bird.breed()}
-Has teeth? ${bird.hasTeeth()}. And how big it's poop is? ${bird.poop()}`);
+// console.log('How do you breed?\n');
+// console.log(`A ${reptile.getName()} is breeding by ${reptile.breed()}
+// Has teeth? ${reptile.hasTeeth()}. And how big it's poop is? ${reptile.poop()}`);
+// console.log(`A ${mammal.getName()} is breeding by ${mammal.breed()}
+// Has teeth? ${mammal.hasTeeth()}. And how big it's poop is? ${mammal.poop()}`);
+// console.log(`A ${bird.getName()} is breeding by ${bird.breed()}
+// Has teeth? ${bird.hasTeeth()}. And how big it's poop is? ${bird.poop()}`);
