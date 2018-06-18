@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item {
+  align-self: flex-end;
+  min-height: 200px;
+  min-width: 200px;
+  display: flex;
+}
+
+.green {
+  background-color: #51d400;
+}
+
+.yellow {
+  background-color: #ffd62a;
+}
+
+.purple {
+  background-color: #b02aff;
+}

@@ -1,0 +1,27 @@
+.container {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  min-width: 200px;
+  min-height: 200px;
+}
+
+.green {
+  background-color: #51d400;
+  order: 1;
+}
+
+.yellow {
+  background-color: #ffd62a;
+  order: 3;
+  min-height: 400px;
+}
+
+.purple {
+  background-color: #b02aff;
+  order: 2;
+}
