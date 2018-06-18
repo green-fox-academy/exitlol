@@ -1,0 +1,53 @@
+.wrapper {
+  display: flex;
+  width: 1000px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.banner {
+  width: 100%;
+  height: 150px;
+  background-color: #00ffff;
+}
+
+.main {
+  display: flex;
+  background-color: #fe0000;
+  width: 55%;
+  height: 800px;
+  order: 2;
+  margin: 0 15px;
+  justify-content: flex-end;
+}
+
+.logo {
+  height: 75px;
+  width: 75px;
+  margin: 40px;
+  background-color: black;
+  justify-self: flex-end;
+  align-self: flex-end;
+}
+
+.bar {
+  height: 800px;
+  width: 210px;
+}
+
+.left {
+  background-color: #fea500;
+  order: 1;
+}
+
+.right {
+  background-color: #81007f;
+  order: 3;
+}
+
+.footer {
+  background-color: #0000fe;
+  width: 100%;
+  height: 150px;
+  order: 4;
+}
