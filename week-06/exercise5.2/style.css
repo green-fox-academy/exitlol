@@ -1,0 +1,51 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.banner {
+  width: 100%;
+  height: 100px;
+  background-color: cyan;
+}
+
+.bar {
+  width: 220px;
+  height: 800px;
+}
+
+.left {
+  background-color: orange;
+  order: 1;
+}
+
+.main {
+  display: flex;
+  background-color: red;
+  margin: 0 20px;
+  flex-grow: 1;
+  order: 2;
+  justify-content: flex-end;
+}
+
+.logo {
+  background-color: black;
+  width: 100px;
+  height: 100px;
+  margin: 60px;
+  justify-self: flex-end;
+  align-self: flex-end;
+}
+
+.right {
+  background-color: purple;
+  order: 3;
+}
+
+.footer {
+  background-color: blue;
+  width: 100%;
+  height: 100px;
+  order: 4;
+}
