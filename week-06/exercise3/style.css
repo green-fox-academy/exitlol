@@ -1,0 +1,16 @@
+.container {
+  height: 600px;
+  display: flex;
+  background-color: #ffd62a;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.item {
+  height: 100px;
+  width: 100px;
+  background-color: #b02aff;
+  align-self: center;
+  list-style-type: none;
+  margin-right: 10px;
+}
