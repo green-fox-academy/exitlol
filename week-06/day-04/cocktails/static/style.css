@@ -1,0 +1,90 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  width: 90%;
+  height: calc(width* 0.9);
+  justify-self: center;
+  justify-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+#price {
+  width: 200px;
+  justify-items: center;
+}
+
+h1, a, th, td {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+a, th, td {
+  text-transform: uppercase;
+}
+
+table {
+  border: 1px solid white;
+}
+
+th {
+  background-color: #000000;
+  color: white;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+td {
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+tr {
+  background-color: #eee;
+}
+
+tr:nth-child(2n) {
+  background-color: #53c273;
+}
+
+.cocktails, .non-alcoholic {
+  display: inline-block;
+}
+
+.non-alcoholic {
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: lowercase;
+}
+
+.ingredients {
+  text-transform: lowercase;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.price {
+  text-align: center;
+  
+}
+
+.price:after {
+  content: ' Ft';
+  text-transform: capitalize;
+}
