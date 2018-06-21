@@ -25,13 +25,13 @@
     </ul>
     <table>
       <thead>
-        <th>Name</th>
+        <th class="bordered">Name</th>
         <th id="price">Price</th>
       </thead>
       <tbody>
         <% cocktailList.forEach((item) => { %>
           <tr>
-            <td>
+            <td class="bordered">
               <div class="cocktails">
                 <%= item.name %>
                   <% if (!item.isAlcoholic){ %>
