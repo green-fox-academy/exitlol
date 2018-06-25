@@ -108,9 +108,32 @@ app.post('/arrays', (req, res) => {
     }
     res.json({
       result : doubRes
-    })
+    });
   }
-})
+});
+
+app.post('/sith', (req, res) => {
+  let sentence = req.body.text;
+  sentence.toLowerCase();
+  let randoms = ['Arrgh.', 'Uhmm.', 'Err..err.err.']
+  if (req.body === undefined || sentence === undefined) {
+    res.json({
+      error : "Feed me some text you have to, padawan young you are. Hmmm."
+    })
+  } else if (sentence) {
+    let sentArray = sentence.split(' ');
+    let tempArray = [];
+    for (let i = 0; i < sentArray.length; i++) {
+      if (i % 2 !== 0) {
+        let wordArray = [];
+        wordArray.push(sentArray[i]);
+        tempArray.push(sentArray[i]);
+        tempArray.push(wordArray[i-1]);
+        console.log(tempArray);
+      }
+    }
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
