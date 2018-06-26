@@ -10,4 +10,32 @@ const imgGal = [
 ];
 
 
-const gallery = document.querySelector('#gallery');
+const gallery = document.querySelector('img');
+const buttons = document.querySelectorAll('.nav-button');
+
+
+buttons[0].addEventListener('click', function (event) {
+  let i = 0;
+  if (gallery.alt === imgGal[0].title) {
+    gallery.src = imgGal[0].url;
+    buttons[0].disabled = true;
+  } else if (gallery.alt !== imgGal[0].title) {
+    gallery.src = imgGal[i].url;
+    gallery.alt = imgGal[i].title;
+    i--;
+  }
+});
+
+buttons[1].addEventListener('click', function (event) {
+  let i = 0;
+  if (gallery.alt === imgGal[imgGal.length-1].title) {
+    gallery.src = imgGal[imgGal.length-1].url;
+    buttons[1].disabled = true;
+  } else if (gallery.alt !== imgGal[imgGal.length-1].title) {
+    i++;
+    gallery.src = imgGal[i].url;
+    gallery.alt = imgGal[i].title;
+    console.log(`${gallery} picture number: ${i}`);
+  
+  }
+})
