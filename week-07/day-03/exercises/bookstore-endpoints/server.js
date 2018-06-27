@@ -33,6 +33,8 @@ app.get('/api/book_titles/', (req, res) => {
   });
 });
 
+app.get('/api/')
+
 
 
 

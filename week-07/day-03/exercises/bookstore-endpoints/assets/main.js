@@ -2,7 +2,7 @@
 
 const http = new XMLHttpRequest;
 const host = 'http://localhost:3000';
-const btn = document.querySelector('button');
+const btn = document.querySelectorAll('button');
 const wrapper = document.querySelector('#wrapper');
 
 
@@ -18,6 +18,6 @@ http.onload = () => {
   });
 }
 
-btn.addEventListener('click', () => {
+btn[0].addEventListener('click', () => {
   http.send()
 })
