@@ -38,7 +38,17 @@ app.get('/api/full_list/', (req, res) => {
   WHERE book_mast.aut_id = author.aut_id
   AND book_mast.cate_id = category.cate_id
   AND book_mast.pub_id = publisher.pub_id;`;
-  connection.query(sql, (err, rows) => {
+
+  let queryInputs = [];
+
+  if (req.query.category) {
+    sql = `SELECT book_name AS 'Title', aut_name AS 'Author', cate_descrip AS 'Category', pub_name AS 'Publisher', book_price AS 'Price' from book_mast, author, category, publisher
+  WHERE category.cate_descrip = ? AND book_mast.aut_id = author.aut_id
+  AND book_mast.cate_id = category.cate_id
+  AND book_mast.pub_id = publisher.pub_id;`;
+  queryInputs = [req.query.category];
+  }
+  connection.query(sql, queryInputs, (err, rows) => {
     if (err) {
       console.log(err);
       res.status(500).send();
