@@ -33,7 +33,22 @@ app.get('/api/book_titles/', (req, res) => {
   });
 });
 
-app.get('/api/')
+app.get('/api/full_list/', (req, res) => {
+  let sql = `SELECT book_name AS 'Title', aut_name AS 'Author', cate_descrip AS 'Category', pub_name AS 'Publisher', book_price AS 'Price' from book_mast, author, category, publisher
+  WHERE book_mast.aut_id = author.aut_id
+  AND book_mast.cate_id = category.cate_id
+  AND book_mast.pub_id = publisher.pub_id;`;
+  connection.query(sql, (err, rows) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send();
+      return;
+    }
+    res.json({
+      fullList: rows,
+    });
+  });
+});
 
 
 
