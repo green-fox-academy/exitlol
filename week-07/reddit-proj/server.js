@@ -49,9 +49,7 @@ app.get('/posts', (req, res) => {
 // instert into DB with post req
 
 app.post('/posts', (req, res) => {
-  let insertSql = `INSERT INTO posts (title, url) VALUES ("${
-    req.body.title
-  }", "${req.body.url}");`;
+  let insertSql = `INSERT INTO posts (title, url) VALUES ("${req.body.title}", "${req.body.url}");`;
   conn.query(insertSql, (err, rows) => {
     if (err) {
       console.log(err);
@@ -161,9 +159,7 @@ app.delete('/posts/:id', (req, res) => {
 
 app.put('/posts/:id', (req, res) => {
   //query DB for update
-  let updateStr = `UPDATE posts SET title = '${req.body.title}', url = '${
-    req.body.url
-  }';`;
+  let updateStr = `UPDATE posts SET title = '${req.body.title}', url = '${req.body.url}' WHERE id = '${req.params.id}';`;
   conn.query(updateStr, (err, rows) => {
     if (err) {
       console.log(err);
