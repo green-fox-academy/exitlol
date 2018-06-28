@@ -75,15 +75,13 @@ app.post('/posts', (req, res) => {
   });
 });
 
-// updating score
+// Upvote with score change
 
 app.put('/posts/:id/upvote', (req, res) => {
-  // update query for said ID
 
-  let upDate = `UPDATE posts SET score = score + 1, vote = '1' WHERE id = '${
-    req.params.id
-  }';`;
-  conn.query(upDate, (err, rows) => {
+  let upVote = `UPDATE posts SET score = score + 1, vote = '1' WHERE id = '${req.params.id}';`;
+  // query for update
+  conn.query(upVote, (err, rows) => {
     if (err) {
       console.log(err);
       rows.sendStatus(500);
@@ -91,7 +89,6 @@ app.put('/posts/:id/upvote', (req, res) => {
     }
     
     // search for the same row to get response
-
     let search = `SELECT * from posts WHERE id = '${req.params.id}';`;
     conn.query(search, (err, rows) => {
       if (err) {
@@ -101,6 +98,32 @@ app.put('/posts/:id/upvote', (req, res) => {
       }
       res.json({
         result: rows
+      });
+    });
+  });
+});
+
+// Downvote
+
+app.put('/posts/:id/downvote', (req, res) => {
+  let downVote = `UPDATE posts SET score = score - 1, vote = '-1' WHERE id = '${req.params.id}';`;
+  // query for update
+  conn.query(downVote, (err, rows) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+      return;
+    }
+    //search for the same row to get response
+    let search = `SELECT * from posts WHERE id = '${req.params.id}';`;
+    conn.query(search, (err, rows) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+        return;
+      }
+      res.json({
+        result: rows,
       });
     });
   });
