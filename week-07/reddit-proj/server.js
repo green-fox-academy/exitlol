@@ -96,7 +96,7 @@ app.put('/posts/:id/upvote', (req, res) => {
         res.sendStatus(500);
         return;
       }
-      res.json({
+      res.status(200).json({
         result: rows
       });
     });
@@ -122,7 +122,7 @@ app.put('/posts/:id/downvote', (req, res) => {
         res.sendStatus(500);
         return;
       }
-      res.json({
+      res.status(200).json({
         result: rows,
       });
     });
