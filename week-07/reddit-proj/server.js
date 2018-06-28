@@ -89,6 +89,7 @@ app.put('/posts/:id/upvote', (req, res) => {
       rows.sendStatus(500);
       return;
     }
+    
     // search for the same row to get response
 
     let search = `SELECT * from posts WHERE id = '${req.params.id}';`;
