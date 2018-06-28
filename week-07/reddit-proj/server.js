@@ -78,8 +78,9 @@ app.post('/posts', (req, res) => {
 // Upvote with score change
 
 app.put('/posts/:id/upvote', (req, res) => {
-
-  let upVote = `UPDATE posts SET score = score + 1, vote = '1' WHERE id = '${req.params.id}';`;
+  let upVote = `UPDATE posts SET score = score + 1, vote = '1' WHERE id = '${
+    req.params.id
+  }';`;
   // query for update
   conn.query(upVote, (err, rows) => {
     if (err) {
@@ -87,7 +88,7 @@ app.put('/posts/:id/upvote', (req, res) => {
       rows.sendStatus(500);
       return;
     }
-    
+
     // search for the same row to get response
     let search = `SELECT * from posts WHERE id = '${req.params.id}';`;
     conn.query(search, (err, rows) => {
@@ -106,7 +107,9 @@ app.put('/posts/:id/upvote', (req, res) => {
 // Downvote
 
 app.put('/posts/:id/downvote', (req, res) => {
-  let downVote = `UPDATE posts SET score = score - 1, vote = '-1' WHERE id = '${req.params.id}';`;
+  let downVote = `UPDATE posts SET score = score - 1, vote = '-1' WHERE id = '${
+    req.params.id
+  }';`;
   // query for update
   conn.query(downVote, (err, rows) => {
     if (err) {
@@ -123,7 +126,59 @@ app.put('/posts/:id/downvote', (req, res) => {
         return;
       }
       res.status(200).json({
-        result: rows,
+        result: rows
+      });
+    });
+  });
+});
+
+// Delete post
+
+app.delete('/posts/:id', (req, res) => {
+  //query DB for id
+  let queryStr = `SELECT * FROM posts WHERE id = '${req.params.id}';`;
+  conn.query(queryStr, (err, rows) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+      return;
+    }
+    let deleted = rows[0];
+
+    let delStr = `DELETE FROM posts WHERE id = '${req.params.id}';`;
+    conn.query(delStr, (err, rows) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+        return;
+      }
+      res.status(200).json({
+        deleted
+      });
+    });
+  });
+});
+
+app.put('/posts/:id', (req, res) => {
+  //query DB for update
+  let updateStr = `UPDATE posts SET title = '${req.body.title}', url = '${
+    req.body.url
+  }';`;
+  conn.query(updateStr, (err, rows) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+      return;
+    }
+    let queryStr = `SELECT * FROM posts WHERE id = '${req.params.id}';`;
+    conn.query(queryStr, (err, rows) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+        return;
+      }
+      res.status(200).json({
+        result: rows
       });
     });
   });
