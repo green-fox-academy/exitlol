@@ -34,7 +34,8 @@ app.get('/hello', (req, res) => {
 // posts get endpoint
 
 app.get('/posts', (req, res) => {
-  let sql = 'SELECT id, title, url, timestamp, score, vote, user_name FROM posts, users WHERE users.user_id = posts.owner_id;';
+  let sql =
+    'SELECT id, title, url, timestamp, score, vote, user_name FROM posts, users WHERE users.user_id = posts.owner_id;';
   conn.query(sql, (err, rows) => {
     if (err) {
       console.log(err);
@@ -50,7 +51,9 @@ app.get('/posts', (req, res) => {
 
 app.post('/posts', (req, res) => {
   // query to get user ID
-  let userSearch = `SELECT user_id FROM users WHERE user_name = '${req.headers.username}';`;
+  let userSearch = `SELECT user_id FROM users WHERE user_name = '${
+    req.headers.username
+  }';`;
   conn.query(userSearch, (err, id) => {
     if (err) {
       console.log(err);
@@ -59,30 +62,34 @@ app.post('/posts', (req, res) => {
     }
     // inserting into DB
     let userId = id[0].user_id;
-    let insertSql = `INSERT INTO posts (title, url, owner_id) VALUES ('${req.body.title}', '${req.body.url}', '${userId}');`;
-    conn.query(insertSql, (err, rows) => {
+    let insertSql = `INSERT INTO posts (title, url, owner_id) VALUES ('${
+      req.body.title
+    }', '${req.body.url}', '${userId}');`;
+    conn.query(insertSql, (err, resObj) => {
       if (err) {
         console.log(err);
         res.status(500).send();
         return;
       }
-    });
-  });
 
-  // response with the last entry from DB
-
-  let sql = 'SELECT id, title, url, timestamp, score, vote, user_name FROM posts, users WHERE users.user_id = posts.owner_id ORDER BY posts.id DESC LIMIT 1';
-  conn.query(sql, (err, rows) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send();
-      return;
-    }
-    res.status(200).json({
-      result: rows
+      let sql =
+        `SELECT id, title, url, timestamp, score, vote, user_name FROM posts, users WHERE users.user_id = posts.owner_id
+        AND posts.id = '${resObj.insertId}'`;
+      conn.query(sql, (err, rows) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send();
+          return;
+        }
+        res.status(200).json({
+          result: rows
+        });
+      });
     });
   });
 });
+
+// response with the last entry from DB
 
 // Upvote with score change
 
@@ -145,9 +152,11 @@ app.put('/posts/:id/downvote', (req, res) => {
 
 app.delete('/posts/:id', (req, res) => {
   // query for matching IDs
-  let userID = `SELECT * FROM posts, users WHERE posts.id = '${req.params.id}' AND users.user_name = '${req.headers.username}';`;
+  let userID = `SELECT * FROM posts, users WHERE posts.id = '${
+    req.params.id
+  }' AND users.user_name = '${req.headers.username}';`;
   conn.query(userID, (err, ID) => {
-    if(err) {
+    if (err) {
       console.log(err);
       res.sendStatus(500);
       return;
@@ -163,7 +172,7 @@ app.delete('/posts/:id', (req, res) => {
           return;
         }
         let deleted = rows[0];
-    
+
         let delStr = `DELETE FROM posts WHERE id = '${req.params.id}';`;
         conn.query(delStr, (err, rows) => {
           if (err) {
@@ -182,26 +191,43 @@ app.delete('/posts/:id', (req, res) => {
   });
 });
 
+//updateing existing post
 app.put('/posts/:id', (req, res) => {
-  //query DB for update
-  let updateStr = `UPDATE posts SET title = '${req.body.title}', url = '${req.body.url}' WHERE id = '${req.params.id}';`;
-  conn.query(updateStr, (err, rows) => {
+  // searching for user ID
+  let searchID = `SELECT * FROM posts, users WHERE posts.id = '${
+    req.params.id
+  }' AND users.user_name = '${req.headers.username}';`;
+  conn.query(searchID, (err, ID) => {
     if (err) {
       console.log(err);
       res.sendStatus(500);
       return;
     }
-    let queryStr = `SELECT * FROM posts WHERE id = '${req.params.id}';`;
-    conn.query(queryStr, (err, rows) => {
-      if (err) {
-        console.log(err);
-        res.sendStatus(500);
-        return;
-      }
-      res.status(200).json({
-        result: rows
+    //restricting user
+    if (ID[0].user_id === ID[0].owner_id) {
+      let updateStr = `UPDATE posts SET title = '${req.body.title}', url = '${
+        req.body.url
+      }' WHERE id = '${req.params.id}';`;
+      conn.query(updateStr, (err, rows) => {
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
+          return;
+        }
+        //query DB for update
+        let queryStr = `SELECT * FROM posts WHERE id = '${req.params.id}';`;
+        conn.query(queryStr, (err, rows) => {
+          if (err) {
+            console.log(err);
+            res.sendStatus(500);
+            return;
+          }
+          res.status(200).json({
+            result: rows
+          });
+        });
       });
-    });
+    }
   });
 });
 
