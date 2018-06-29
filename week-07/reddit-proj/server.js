@@ -50,8 +50,8 @@ app.get('/posts', (req, res) => {
 
 app.post('/posts', (req, res) => {
   // query to get user ID
-  let userSerach = `SELECT user_id FROM users WHERE user_name = '${req.headers.username}';`;
-  conn.query(userSerach, (err, id) => {
+  let userSearch = `SELECT user_id FROM users WHERE user_name = '${req.headers.username}';`;
+  conn.query(userSearch, (err, id) => {
     if (err) {
       console.log(err);
       res.sendStatus(500);
@@ -144,27 +144,41 @@ app.put('/posts/:id/downvote', (req, res) => {
 // Delete post
 
 app.delete('/posts/:id', (req, res) => {
-  //query DB for id
-  let queryStr = `SELECT * FROM posts WHERE id = '${req.params.id}';`;
-  conn.query(queryStr, (err, rows) => {
-    if (err) {
+  // query for matching IDs
+  let userID = `SELECT * FROM posts, users WHERE posts.id = '${req.params.id}' AND users.user_name = '${req.headers.username}';`;
+  conn.query(userID, (err, ID) => {
+    if(err) {
       console.log(err);
       res.sendStatus(500);
       return;
     }
-    let deleted = rows[0];
-
-    let delStr = `DELETE FROM posts WHERE id = '${req.params.id}';`;
-    conn.query(delStr, (err, rows) => {
-      if (err) {
-        console.log(err);
-        res.sendStatus(500);
-        return;
-      }
-      res.status(200).json({
-        deleted
+    // restricting delete for owner only
+    if (ID[0].user_id === ID[0].owner_id) {
+      //query DB for id to delete
+      let queryStr = `SELECT * FROM posts WHERE id = '${req.params.id}';`;
+      conn.query(queryStr, (err, rows) => {
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
+          return;
+        }
+        let deleted = rows[0];
+    
+        let delStr = `DELETE FROM posts WHERE id = '${req.params.id}';`;
+        conn.query(delStr, (err, rows) => {
+          if (err) {
+            console.log(err);
+            res.sendStatus(500);
+            return;
+          }
+          res.status(200).json({
+            deleted
+          });
+        });
       });
-    });
+    } else {
+      res.status(401).send('Unauthorized Request!');
+    }
   });
 });
 
