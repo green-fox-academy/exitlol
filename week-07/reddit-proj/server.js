@@ -34,7 +34,7 @@ app.get('/hello', (req, res) => {
 // posts get endpoint
 
 app.get('/posts', (req, res) => {
-  let sql = 'SELECT * FROM posts;';
+  let sql = 'SELECT id, title, url, timestamp, score, vote, user_name FROM posts, users WHERE users.user_id = posts.owner_id;';
   conn.query(sql, (err, rows) => {
     if (err) {
       console.log(err);
@@ -49,18 +49,29 @@ app.get('/posts', (req, res) => {
 // instert into DB with post req
 
 app.post('/posts', (req, res) => {
-  let insertSql = `INSERT INTO posts (title, url) VALUES ("${req.body.title}", "${req.body.url}");`;
-  conn.query(insertSql, (err, rows) => {
+  // query to get user ID
+  let userSerach = `SELECT user_id FROM users WHERE user_name = '${req.headers.username}';`;
+  conn.query(userSerach, (err, id) => {
     if (err) {
       console.log(err);
-      res.status(500).send();
+      res.sendStatus(500);
       return;
     }
+    // inserting into DB
+    let userId = id[0].user_id;
+    let insertSql = `INSERT INTO posts (title, url, owner_id) VALUES ('${req.body.title}', '${req.body.url}', '${userId}');`;
+    conn.query(insertSql, (err, rows) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send();
+        return;
+      }
+    });
   });
 
   // response with the last entry from DB
 
-  let sql = 'SELECT * FROM  posts WHERE ID = (SELECT MAX(ID)  FROM posts);';
+  let sql = 'SELECT id, title, url, timestamp, score, vote, user_name FROM posts, users WHERE users.user_id = posts.owner_id ORDER BY posts.id DESC LIMIT 1';
   conn.query(sql, (err, rows) => {
     if (err) {
       console.log(err);
