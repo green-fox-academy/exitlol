@@ -35,7 +35,7 @@ app.get('/hello', (req, res) => {
 
 app.get('/posts', (req, res) => {
   let sql =
-    'SELECT id, title, url, timestamp, score, vote, user_name FROM posts, users WHERE users.user_id = posts.owner_id;';
+    'SELECT id, title, url, timestamp, score, vote, user_name AS owner FROM posts, users WHERE users.user_id = posts.owner_id;';
   conn.query(sql, (err, rows) => {
     if (err) {
       console.log(err);
@@ -51,7 +51,7 @@ app.get('/posts', (req, res) => {
 
 app.post('/posts', (req, res) => {
   // query to get user ID
-  let userSearch = `SELECT user_id FROM users WHERE user_name = '${
+  let userSearch = `SELECT user_id From users WHERE user_name = '${
     req.headers.username
   }';`;
   conn.query(userSearch, (err, id) => {
@@ -73,7 +73,7 @@ app.post('/posts', (req, res) => {
       }
 
       let sql =
-        `SELECT id, title, url, timestamp, score, vote, user_name FROM posts, users WHERE users.user_id = posts.owner_id
+        `SELECT id, title, url, timestamp, score, vote, user_name AS owner FROM posts, users WHERE users.user_id = posts.owner_id
         AND posts.id = '${resObj.insertId}'`;
       conn.query(sql, (err, rows) => {
         if (err) {
@@ -106,15 +106,16 @@ app.put('/posts/:id/upvote', (req, res) => {
     }
 
     // search for the same row to get response
-    let search = `SELECT * from posts WHERE id = '${req.params.id}';`;
-    conn.query(search, (err, rows) => {
+    let search = `SELECT id, title, url, timestamp, score, vote, user_name AS owner from posts, users WHERE id = '${req.params.id}'
+    AND users.user_id = posts.owner_id;`;
+    conn.query(search, (err, resObj) => {
       if (err) {
         console.log(err);
         res.sendStatus(500);
         return;
       }
       res.status(200).json({
-        result: rows
+        result: resObj,
       });
     });
   });
@@ -134,7 +135,8 @@ app.put('/posts/:id/downvote', (req, res) => {
       return;
     }
     //search for the same row to get response
-    let search = `SELECT * from posts WHERE id = '${req.params.id}';`;
+    let search = `SELECT id, title, url, timestamp, score, vote, user_name AS owner from posts, users WHERE id = '${req.params.id}'
+    AND users.user_id = posts.owner_id;`;
     conn.query(search, (err, rows) => {
       if (err) {
         console.log(err);
