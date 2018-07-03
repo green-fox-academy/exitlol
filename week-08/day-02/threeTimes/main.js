@@ -3,18 +3,22 @@
 const btn = document.querySelector('button');
 const pTag = document.querySelector('p');
 
-btn.setAttribute('value', '0');
+let clickTimes = 0;
+let domLoaded = false;
 
-function elapsedTime () {
-  let start = Date.now();
-
-}
-
-function counter() {
-  btn.value = parseInt(btn.value) + 1;
-  if (btn.value === '3') {
+const clicker = () => {
+  if (clickTimes < 3) {
+    clickTimes += 1;
+  }
+  if (clickTimes === 3 && domLoaded) {
     pTag.textContent = 'I dare you!';
-  }   
+  }
 }
 
-btn.addEventListener('click', counter);
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    domLoaded = true;
+  }, 5000);
+});
+
+btn.addEventListener('click', clicker);
