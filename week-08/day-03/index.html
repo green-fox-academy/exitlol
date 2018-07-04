@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Login Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
+<body>
+  <div id="wrapper">
+    <form id="login" autocomplete="off">
+      <label for="login" class="login-title">
+        <span>Account Login</span>
+      </label>
+      <label for="username">
+        <span class='directions'>Username</span>
+        <input type="text" name="username" required>
+      </label>
+      <label for="password">
+        <span class='directions'>Password</span>
+          <input type="password" name="password" required>
+          <i class="far fa-eye"></i>
+      </label>
+          <span class="reminder">
+            <a href="#"> Forgot password?</a>
+          </span>
+      </label>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
