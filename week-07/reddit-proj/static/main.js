@@ -53,60 +53,77 @@ window.onload =  () => {
       manipDiv.appendChild(deleteBtn);
       deleteBtn.classList = 'modify';
       deleteBtn.textContent = 'Delete';
+     
+    });
+    const modalWindow = document.createElement('div');
+    const postWindow = document.createElement('div');
+    const body = document.querySelector('body');
+    const formDiv = document.createElement('div');
+    const form  = document.createElement('form');
+    const newPostTitleCont = document.createElement('div');
+    const titleLabel = document.createElement('label');
+    const titleInput = document.createElement('input');
+    const newPostURLCont = document.createElement('div');
+    const urlLabel = document.createElement('label');
+    const urlInput = document.createElement('input');
+    const newPostBtnCont = document.createElement('div');
+    const submitBtn = document.createElement('button');
+    body.appendChild(modalWindow);
+    modalWindow.classList = 'modal-cont';
+    modalWindow.appendChild(postWindow);
+    postWindow.classList = 'post-wind-cont';
+    postWindow.appendChild(formDiv);
+    formDiv.classList = 'new-post-form';
+    formDiv.appendChild(form);
+    form.appendChild(newPostTitleCont);
+    newPostTitleCont.classList = 'new-post-input';
+    newPostTitleCont.appendChild(titleLabel);
+    titleLabel.setAttribute('for', 'title');
+    titleLabel.textContent = 'Title: ';
+    newPostTitleCont.appendChild(titleInput);
+    titleInput.setAttribute('type', 'text');
+    titleInput.setAttribute('for', 'title');
+    titleInput.name = 'title';
+    titleInput.id = 'title';
+    titleInput.required = true;
+    form.appendChild(newPostURLCont);
+    newPostURLCont.classList = 'new-post-input';
+    newPostURLCont.appendChild(urlLabel);
+    urlLabel.setAttribute('for', 'url');
+    urlLabel.textContent = 'URL: ';
+    newPostURLCont.appendChild(urlInput);
+    urlInput.setAttribute('type', 'text');
+    urlInput.setAttribute('for', 'url');
+    urlInput.name = 'url';
+    urlInput.id = 'url';
+    form.appendChild(newPostBtnCont);
+    newPostBtnCont.appendChild(submitBtn);
+    newPostBtnCont.classList = 'submit-btn';
+    submitBtn.setAttribute('type', 'submit');
+    submitBtn.id = 'submit';
+    submitBtn.textContent = 'Submit';
+    
+
+    const newPostButton = document.querySelector('#new-post');
+    
+    const modal = document.querySelectorAll('.modal-cont');
+    newPostButton.addEventListener('click', () => {
+      modal[0].style.visibility = 'visible';      
+    });
+    
+
+    const submitForm = document.querySelector('form');
+    submitForm.addEventListener('change', (e) => {
+      console.log(e);
+    });
+
+    document.addEventListener('keyup', (e) => {
+      if (e.keyCode === 27 && modal[0].style.visibility === 'visible') {
+        modal[0].style.visibility = 'hidden';
+      }
     });
   }
   http.send();
 }
 
-const newPostButton = document.querySelector('#new-post');
-
-function newPost() {
-  const modalWindow = document.createElement('div');
-  const postWindow = document.createElement('div');
-  const body = document.querySelector('body');
-  const form = document.createElement('div');
-  const newPostTitleCont = document.createElement('div');
-  const titleLabel = document.createElement('label');
-  const titleInput = document.createElement('input');
-  const newPostURLCont = document.createElement('div');
-  const urlLabel = document.createElement('label');
-  const urlInput = document.createElement('input');
-  const newPostBtnCont = document.createElement('div');
-  const submitBtn = document.createElement('button');
-  body.appendChild(modalWindow);
-  modalWindow.classList = 'modal-cont';
-  modalWindow.appendChild(postWindow);
-  postWindow.classList = 'post-wind-cont';
-  postWindow.appendChild(form);
-  form.classList = 'new-post-form';
-  form.appendChild(newPostTitleCont);
-  newPostTitleCont.classList = 'new-post-input';
-  newPostTitleCont.appendChild(titleLabel);
-  titleLabel.setAttribute('for', 'title');
-  titleLabel.textContent = 'Title: ';
-  newPostTitleCont.appendChild(titleInput);
-  titleInput.setAttribute('type', 'text');
-  titleInput.setAttribute('for', 'title');
-  titleInput.name = 'title';
-  titleInput.id = 'title';
-  titleInput.required = true;
-  form.appendChild(newPostURLCont);
-  newPostURLCont.classList = 'new-post-input';
-  newPostURLCont.appendChild(urlLabel);
-  urlLabel.setAttribute('for', 'url');
-  urlLabel.textContent = 'URL: ';
-  newPostURLCont.appendChild(urlInput);
-  urlInput.setAttribute('type', 'text');
-  urlInput.setAttribute('for', 'url');
-  urlInput.name = 'url';
-  urlInput.id = 'url';
-  form.appendChild(newPostBtnCont);
-  newPostBtnCont.appendChild(submitBtn);
-  newPostBtnCont.classList = 'submit-btn';
-  submitBtn.setAttribute('type', 'submit');
-  submitBtn.id = 'submit';
-  submitBtn.textContent = 'Submit';
-}
-
-newPostButton.addEventListener('click', newPost);
 

@@ -167,6 +167,7 @@ a {
 }
 
 .modal-cont {
+  visibility: hidden;
   position: fixed;
   top: 0;
   left: 0;
@@ -178,7 +179,6 @@ a {
 
 .post-wind-cont {
   margin: auto auto;
-  height: 50%;
   width: 60%;
   background-color: #eeeeee;
   border-radius: 15px;
@@ -217,11 +217,10 @@ input {
 
 .submit-btn {
   display: flex;
-  margin: 10px auto;
+  justify-content: center;
   width: 100%;
 }
 
 #submit {
   width: 30%;
-  text-align: center;
 }
