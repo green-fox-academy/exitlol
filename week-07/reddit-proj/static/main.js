@@ -1,15 +1,18 @@
 'use strict';
 
 const main = document.querySelector('#main-cont');
-const host = 'http://localhost:3000'
+const host = 'http://localhost:3000';
 let http = new XMLHttpRequest();
 
-window.onload =  () => {
+let url = '';
+let title = '';
+
+window.onload = () => {
   http.open('GET', `${host}/posts`, true);
   http.onload = () => {
     let data = JSON.parse(http.responseText);
-    
-    data.result.forEach((element) => {
+
+    data.result.forEach(element => {
       const postDiv = document.createElement('div');
       const dataDiv = document.createElement('div');
       const scoreDiv = document.createElement('div');
@@ -22,7 +25,7 @@ window.onload =  () => {
       const manipDiv = document.createElement('div');
       const modifyBtn = document.createElement('button');
       const deleteBtn = document.createElement('button');
-      main.appendChild(postDiv)
+      main.appendChild(postDiv);
       postDiv.classList = 'post-cont';
       postDiv.appendChild(scoreDiv);
       scoreDiv.classList = 'score-cont';
@@ -44,7 +47,9 @@ window.onload =  () => {
       titleLink.textContent = element.title;
       dataDiv.appendChild(dateDiv);
       dateDiv.classList = 'date';
-      dateDiv.textContent = `Date of creation:  ${element.timestamp} by: ${element.owner}`;
+      dateDiv.textContent = `Date of creation:  ${element.timestamp} by: ${
+        element.owner
+      }`;
       dataDiv.appendChild(manipDiv);
       manipDiv.classList = 'manip-cont';
       manipDiv.appendChild(modifyBtn);
@@ -53,13 +58,12 @@ window.onload =  () => {
       manipDiv.appendChild(deleteBtn);
       deleteBtn.classList = 'modify';
       deleteBtn.textContent = 'Delete';
-     
     });
     const modalWindow = document.createElement('div');
     const postWindow = document.createElement('div');
     const body = document.querySelector('body');
     const formDiv = document.createElement('div');
-    const form  = document.createElement('form');
+    const form = document.createElement('form');
     const newPostTitleCont = document.createElement('div');
     const titleLabel = document.createElement('label');
     const titleInput = document.createElement('input');
@@ -102,28 +106,39 @@ window.onload =  () => {
     submitBtn.setAttribute('type', 'submit');
     submitBtn.id = 'submit';
     submitBtn.textContent = 'Submit';
-    
 
     const newPostButton = document.querySelector('#new-post');
-    
+
     const modal = document.querySelectorAll('.modal-cont');
     newPostButton.addEventListener('click', () => {
-      modal[0].style.visibility = 'visible';      
+      modal[0].style.visibility = 'visible';
     });
-    
 
     const submitForm = document.querySelector('form');
-    submitForm.addEventListener('change', (e) => {
-      console.log(e);
+    submitForm.addEventListener('submit', e => {
+      e.preventDefault();
+
+      title = e.target.elements[0].value;
+      url = e.target.elements[1].value;
+
+      const http2 = new XMLHttpRequest();
+      http2.open('POST', `${host}/posts`, true);
+      http2.setRequestHeader('username', 'Anonymous');
+      http2.setRequestHeader('Content-Type', 'application/json');
+      console.log(`${title} - ${url}`);
+      http2.send(
+        JSON.stringify({
+          title,
+          url,
+        })
+      );
     });
 
-    document.addEventListener('keyup', (e) => {
+    document.addEventListener('keyup', e => {
       if (e.keyCode === 27 && modal[0].style.visibility === 'visible') {
         modal[0].style.visibility = 'hidden';
       }
     });
-  }
+  };
   http.send();
-}
-
-
+};
