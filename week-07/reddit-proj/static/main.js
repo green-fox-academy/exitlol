@@ -8,7 +8,6 @@ window.onload =  () => {
   http.open('GET', `${host}/posts`, true);
   http.onload = () => {
     let data = JSON.parse(http.responseText);
-    console.log(data.result);
     
     data.result.forEach((element) => {
       const postDiv = document.createElement('div');
@@ -50,7 +49,7 @@ window.onload =  () => {
       manipDiv.classList = 'manip-cont';
       manipDiv.appendChild(modifyBtn);
       modifyBtn.classList = 'modify';
-      modifyBtn.textContent = 'Mofidy';
+      modifyBtn.textContent = 'Modify';
       manipDiv.appendChild(deleteBtn);
       deleteBtn.classList = 'modify';
       deleteBtn.textContent = 'Delete';
@@ -59,5 +58,39 @@ window.onload =  () => {
   http.send();
 }
 
+const newPostButton = document.querySelector('#new-post');
 
+function newPost() {
+  const modalWindow = document.createElement('div');
+  const postWindow = document.createElement('div');
+  const body = document.querySelector('body');
+  const form = document.createElement('div');
+  const newPostTitleCont = document.createElement('div');
+  const titleLabel = document.createElement('label');
+  const titleInput = document.createElement('input');
+  const newPostURLCont = document.createElement('div');
+  const urlLabel = document.createElement('label');
+  const urlInput = document.createElement('input');
+  const newPostBtnCont = document.createElement('div');
+  const submitBtn = document.createElement('button');
+  body.appendChild(modalWindow);
+  modalWindow.classList = 'modal-cont';
+  modalWindow.appendChild(postWindow);
+  postWindow.classList = 'post-wind-cont';
+  postWindow.appendChild(form);
+  form.classList = 'new-post-form';
+  form.appendChild(newPostTitleCont);
+  newPostTitleCont.classList = 'modal-new-post';
+  newPostTitleCont.appendChild(titleLabel);
+  titleLabel.setAttribute('for', 'title');
+  titleLabel.textContent = 'Title';
+  newPostTitleCont.appendChild(titleInput);
+  titleInput.setAttribute('type', 'text');
+  titleInput.setAttribute('for', 'title');
+  titleInput.name = 'title';
+  titleInput.id = 'title';
+  titleInput.required = true;
+}
+
+newPostButton.addEventListener('click', newPost);
 

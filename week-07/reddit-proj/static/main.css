@@ -133,6 +133,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 5px;
 }
 
 .date {
@@ -163,4 +164,22 @@ a {
   font-size: 18px;
   font-weight: 700;
   color: #a7a7a7;
+}
+
+.modal-cont {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+}
+
+.post-wind-cont {
+  margin: auto auto;
+  height: 50%;
+  width: 60%;
+  background-color: #eeeeee;
+  border-radius: 15px;
 }

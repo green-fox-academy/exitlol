@@ -193,7 +193,7 @@ app.delete('/posts/:id', (req, res) => {
   });
 });
 
-//updateing existing post
+//updating existing post
 app.put('/posts/:id', (req, res) => {
   // searching for user ID
   let searchID = `SELECT * FROM posts, users WHERE posts.id = '${
