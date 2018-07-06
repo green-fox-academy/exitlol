@@ -182,4 +182,46 @@ a {
   width: 60%;
   background-color: #eeeeee;
   border-radius: 15px;
+  display: flex;
+}
+
+.new-post-input {
+  margin: 10px auto;
+  display: flex;
+  border-color: 1px solid #a7a7a7;
+  width: 80%;
+}
+
+.new-post-form {
+  width: 80%;
+  margin: 15px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+label {
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  margin: 0 15px;
+}
+
+input {
+  border: 1px solid #222;
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  border-radius: 5px;
+  height: 1em;
+  width: 100%;
+}
+
+.submit-btn {
+  display: flex;
+  margin: 10px auto;
+  width: 100%;
+}
+
+#submit {
+  width: 30%;
+  text-align: center;
 }

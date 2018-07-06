@@ -80,16 +80,32 @@ function newPost() {
   postWindow.appendChild(form);
   form.classList = 'new-post-form';
   form.appendChild(newPostTitleCont);
-  newPostTitleCont.classList = 'modal-new-post';
+  newPostTitleCont.classList = 'new-post-input';
   newPostTitleCont.appendChild(titleLabel);
   titleLabel.setAttribute('for', 'title');
-  titleLabel.textContent = 'Title';
+  titleLabel.textContent = 'Title: ';
   newPostTitleCont.appendChild(titleInput);
   titleInput.setAttribute('type', 'text');
   titleInput.setAttribute('for', 'title');
   titleInput.name = 'title';
   titleInput.id = 'title';
   titleInput.required = true;
+  form.appendChild(newPostURLCont);
+  newPostURLCont.classList = 'new-post-input';
+  newPostURLCont.appendChild(urlLabel);
+  urlLabel.setAttribute('for', 'url');
+  urlLabel.textContent = 'URL: ';
+  newPostURLCont.appendChild(urlInput);
+  urlInput.setAttribute('type', 'text');
+  urlInput.setAttribute('for', 'url');
+  urlInput.name = 'url';
+  urlInput.id = 'url';
+  form.appendChild(newPostBtnCont);
+  newPostBtnCont.appendChild(submitBtn);
+  newPostBtnCont.classList = 'submit-btn';
+  submitBtn.setAttribute('type', 'submit');
+  submitBtn.id = 'submit';
+  submitBtn.textContent = 'Submit';
 }
 
 newPostButton.addEventListener('click', newPost);
