@@ -126,6 +126,9 @@ window.onload = () => {
       http2.setRequestHeader('username', 'Anonymous');
       http2.setRequestHeader('Content-Type', 'application/json');
       console.log(`${title} - ${url}`);
+      http2.onload = () => {
+        window.location = '/';
+      }
       http2.send(
         JSON.stringify({
           title,
