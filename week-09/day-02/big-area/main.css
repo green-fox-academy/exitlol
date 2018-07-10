@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+#wrapper {
+  display: grid;
+  grid-gap: 10px;
+  margin: 0 auto;
+  max-width: 960px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 150px);
+  background-color: darkslategray;
+}
+
+.purple {
+  background-color: blueviolet;
+}
+
+.green {
+  background-color: #53c273;
+  grid-area: 1 / 2 / 3 / 4;
+  display: flex;
+}
+
+.yellow-content {
+  display: flex;
+  width: 80%;
+  height: 80%;
+  margin: auto auto;
+  background-color: orange;
+}
