@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#header {
+  display: flex;
+  height: 100px;
+  background-color: blueviolet;
+  margin-bottom: 10px;
+}
+
+#wrapper {
+  display: grid;
+  max-width: 960px;
+  margin: 0 auto;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 3fr;
+  grid-auto-rows: minmax(100px, auto);
+  grid-template-areas: 
+  "aside main"
+  "aside main"
+  "aside main"
+  "aside main"
+  "aside main"
+  "aside main"
+  "footer footer";
+}
+
+.nav {
+  display: flex;
+  background-color: cyan;
+  margin: auto 10px;
+  height: 50px;
+  width: 150px;
+}
+
+.nav:nth-child(1) {
+  margin-left: 50px;
+}
+
+.aside {
+  background-color: #53c273;
+  grid-area: aside;
+}
+
+.main {
+  background-color: orange;
+  grid-area: main;
+}
+
+.footer {
+  background-color: gray;
+  grid-area: footer;
+}
