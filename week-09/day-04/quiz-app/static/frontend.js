@@ -1,19 +1,25 @@
 'use strict';
 
+const score = document.querySelector('p');
+let scoreCount = 0;
+
 function makeQuestion(rows) {
+  score.textContent = `Score: ${scoreCount}`;
+  const answerCont = document.querySelector('#answer-cont');
   rows.forEach((row) => {
     const button = document.createElement('button');
-    const answerCont = document.querySelector('#answer-cont');
-    const score = document.querySelector('p');
     button.textContent = row.answer;
     button.dataset.isCorrect = row.is_correct;
     answerCont.appendChild(button);
     button.addEventListener('click', (event) => {
-      let scoreCount = 0;
       if (event.target.dataset.isCorrect === '1') {
         event.target.classList.add('correct');
-        score.textContent = `Score: ${scoreCount += 1}`;
-      };
+        scoreCount += 1;
+        score.textContent = `Score: ${scoreCount}`;
+      } else {
+        event.target.classList.add('wrong');
+      }
+      setTimeout(getNewQuestion, 3000);
     })
   })
   const qContainer = document.querySelector('#question-cont');
@@ -22,6 +28,12 @@ function makeQuestion(rows) {
   qContainer.appendChild(h3);
 }
 
+function getNewQuestion() {
+  const http = new XMLHttpRequest();
+  http.open('GET', '/game');
+  window.location.href = 'http://localhost:3000';
+  http.send()
+}
 
 function pageLoad() {
   const http = new XMLHttpRequest();

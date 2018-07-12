@@ -56,3 +56,7 @@ button:active {
 .correct {
   background-color: #53c273;
 }
+
+.wrong {
+  background-color: rgb(255, 38, 0);
+}
