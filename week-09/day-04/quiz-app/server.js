@@ -51,6 +51,49 @@ app.get('/game', (req, res) => {
   });
 });
 
+app.get('/api/questions', (req, res) => {
+  let sql = 'SELECT * FROM questions;';
+  conn.query(sql,(err, rows) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+      return;
+    }
+    res.status(200).json(rows);
+  })
+});
+
+app.get('/questions', (req, res) => {
+  res.sendFile(path.join(__dirname, '/static/manage.html'));
+});
+
+app.post('/api/questions', (req, res) => {
+  let postQuestion = `INSERT INTO questions (question) VALUES ('${req.body.question}');`;
+  conn.query(postQuestion, (err, rows) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+      return;
+    }
+    
+    let postAnswers = `INSERT INTO answers (answer, question_id, is_correct)
+    VALUES ('${req.body.answer_1}', '${rows.insertId}', '${req.body.is_correct_1}'),
+    ('${req.body.answer_2}', '${rows.insertId}', '${req.body.is_correct_2}'),
+    ('${req.body.answer_3}', '${rows.insertId}', '${req.body.is_correct_3}'),
+    ('${req.body.answer_4}', '${rows.insertId}', '${req.body.is_correct_4}');`;
+    conn.query(postAnswers, (err, rows) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+        return;
+      }
+      res.status(200).json({
+        message: 'OK',
+      })
+    })
+  })
+});
+
 app.listen(PORT, () => {
   console.log(`Up and running on: ${PORT}`);
 });

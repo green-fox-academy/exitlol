@@ -60,3 +60,14 @@ button:active {
 .wrong {
   background-color: rgb(255, 38, 0);
 }
+
+#manage-cont {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #409adb;
+}
