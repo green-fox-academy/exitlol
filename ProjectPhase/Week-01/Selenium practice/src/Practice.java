@@ -28,6 +28,8 @@ public class Practice {
       showCompleted();
       showAll();
       clearCompleted();
+      addMore();
+      untickCompleted();
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -81,7 +83,10 @@ public class Practice {
   public void showCompleted() throws InterruptedException {
     driver.get("http://todomvc.com/examples/vanillajs/#/completed");
     Thread.sleep(2000);
+  }
 
+  public void addMore() {
+    driver.findElement(By.className("new-todo")).sendKeys("Testing some stuff");
   }
 
   public static void main(String[] args) {
