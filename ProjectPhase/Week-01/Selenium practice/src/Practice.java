@@ -23,7 +23,7 @@ public class Practice {
       addToDo();
       countToDo();
       editToDo();
-
+      completeToDo();
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -44,8 +44,12 @@ public class Practice {
   }
 
   public void editToDo() {
-    WebElement editable = driver.findElement(By.xpath("/html/body/section/section/ul/li[1]/div/label"));
+    WebElement editable = driver.findElement(By.xpath("/html/body/section/section/ul/li[1]/div"));
     action.doubleClick(editable);
+  }
+
+  public void completeToDo() {
+    driver.findElement(By.xpath("/html/body/section/section/ul/li[1]/div/input")).click();
   }
 
   public static void main(String[] args) {
