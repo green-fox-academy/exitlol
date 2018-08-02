@@ -31,6 +31,7 @@ public class Practice {
       addMore();
       completeToDo();
       untickCompleted();
+      deleteToDo();
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -53,10 +54,16 @@ public class Practice {
   public void editToDo() {
     WebElement editable = driver.findElement(By.xpath("/html/body/section/section/ul/li[1]/div"));
     action.doubleClick(editable);
+
   }
 
   public void completeToDo() {
     driver.findElement(By.xpath("/html/body/section/section/ul/li[1]/div/input")).click();
+  }
+
+  public void deleteToDo() {
+    WebElement deletable = driver.findElement(By.xpath("/html/body/section/section/ul/li[1]/div/input"));
+    action.moveToElement(deletable);
   }
 
   public void untickCompleted() throws InterruptedException {
