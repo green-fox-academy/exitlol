@@ -29,6 +29,7 @@ public class Practice {
       showAll();
       clearCompleted();
       addMore();
+      completeToDo();
       untickCompleted();
 
     } catch (Exception e) {
@@ -86,7 +87,7 @@ public class Practice {
   }
 
   public void addMore() {
-    driver.findElement(By.className("new-todo")).sendKeys("Testing some stuff");
+    driver.findElement(By.className("new-todo")).sendKeys("Testing some stuff", Keys.ENTER);
   }
 
   public static void main(String[] args) {
