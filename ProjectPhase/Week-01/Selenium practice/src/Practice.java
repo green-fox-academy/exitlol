@@ -24,6 +24,9 @@ public class Practice {
       countToDo();
       editToDo();
       completeToDo();
+      showActive();
+      showCompleted();
+      showAll();
       clearCompleted();
 
     } catch (Exception e) {
@@ -53,10 +56,32 @@ public class Practice {
     driver.findElement(By.xpath("/html/body/section/section/ul/li[1]/div/input")).click();
   }
 
-  public void clearCompleted() throws InterruptedException {
+  public void untickCompleted() throws InterruptedException {
     WebElement compTask = driver.findElement(By.className("completed"));
     Thread.sleep(2000);
     compTask.findElement(By.cssSelector(".toggle")).click();
+  }
+
+  public void clearCompleted() throws InterruptedException {
+    WebElement clearBtn = driver.findElement(By.className("clear-completed"));
+    Thread.sleep(2000);
+    clearBtn.click();
+  }
+
+  public void showAll() throws InterruptedException {
+    driver.get("http://todomvc.com/examples/vanillajs/#/");
+    Thread.sleep(2000);
+  }
+
+  private void showActive() throws InterruptedException {
+    driver.get("http://todomvc.com/examples/vanillajs/#/active");
+    Thread.sleep(2000);
+  }
+
+  public void showCompleted() throws InterruptedException {
+    driver.get("http://todomvc.com/examples/vanillajs/#/completed");
+    Thread.sleep(2000);
+
   }
 
   public static void main(String[] args) {
