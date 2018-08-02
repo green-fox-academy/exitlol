@@ -24,6 +24,7 @@ public class Practice {
       countToDo();
       editToDo();
       completeToDo();
+      clearCompleted();
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -50,6 +51,12 @@ public class Practice {
 
   public void completeToDo() {
     driver.findElement(By.xpath("/html/body/section/section/ul/li[1]/div/input")).click();
+  }
+
+  public void clearCompleted() throws InterruptedException {
+    WebElement compTask = driver.findElement(By.className("completed"));
+    Thread.sleep(2000);
+    compTask.findElement(By.cssSelector(".toggle")).click();
   }
 
   public static void main(String[] args) {
