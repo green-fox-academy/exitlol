@@ -29,6 +29,6 @@ public class Hook extends BaseUtil {
   @After
   public void tearDownBrowser() throws InterruptedException {
     Thread.sleep(2000);
-    // base.driver.quit();
+     base.driver.quit();
   }
 }
