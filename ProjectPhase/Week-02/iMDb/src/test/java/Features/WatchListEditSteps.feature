@@ -12,4 +12,5 @@ Feature: This deals with the watchlist edit functionality
       When User clicks edit button
       And User is redirected to the edit page
       And User switches the first and the third list element
-      Then User clicks on Done and the popup
+      And User clicks on Done and the popup
+      Then User is on watchlist page
