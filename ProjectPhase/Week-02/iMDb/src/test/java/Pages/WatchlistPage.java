@@ -7,9 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-public class EmptyWatchlistPage {
+public class WatchlistPage {
 
-  public EmptyWatchlistPage(WebDriver driver) {
+  public WatchlistPage(WebDriver driver) {
     PageFactory.initElements(driver, this);
   }
 

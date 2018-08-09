@@ -1,13 +1,9 @@
 package Steps;
 
 import Base.BaseUtil;
-import Pages.EmptyWatchlistPage;
-import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
+import Pages.WatchlistPage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class EmptyWatchListStep extends BaseUtil {
 
@@ -20,13 +16,13 @@ public class EmptyWatchListStep extends BaseUtil {
 
   @Given("^User clicks on watchlist$")
   public void userClicksOnWatchlist() throws Throwable {
-    EmptyWatchlistPage page = new EmptyWatchlistPage(base.driver);
+    WatchlistPage page = new WatchlistPage(base.driver);
     page.clickOnWatchlist();
   }
 
   @Then("^User should see his/her own empty watchlist$")
   public void userShouldSeeHisHerOwnEmptyWatchlist() throws Throwable {
-    EmptyWatchlistPage page = new EmptyWatchlistPage(base.driver);
+    WatchlistPage page = new WatchlistPage(base.driver);
     page.verifyEmptyList();
   }
 }
