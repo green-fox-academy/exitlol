@@ -16,19 +16,8 @@ public class EmptyWatchListStep extends BaseUtil {
     this.base = base;
   }
 
-  @Given("^User is already logged in and on IMDb homepage$")
-  public void userIsAlreadyLoggedInAndOnIMDbHomepage() throws Throwable {
-    base.driver.navigate().to("https://www.imdb.com/");
-    base.driver.findElement(By.id("nblogin")).click();
-    base.driver.findElement(By.xpath("//*[@id=\"signin-options\"]/div/div/a[4]")).click();
-    WebElement loginEmail = base.driver.findElement(By.id("ap_email"));
-    WebElement loginpass = base.driver.findElement(By.id("ap_password"));
-    loginEmail.sendKeys("neutralpointz@gmail.com");
-    loginpass.sendKeys("12345678");
-    base.driver.findElement(By.id("signInSubmit")).click();
-  }
 
-  @And("^User clicks on watchlist$")
+  @Given("^User clicks on watchlist$")
   public void userClicksOnWatchlist() throws Throwable {
     base.driver.findElement(By.xpath("//*[@id=\"navWatchlistMenu\"]/p/a")).click();
   }
