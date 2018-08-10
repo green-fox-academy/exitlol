@@ -1,12 +1,10 @@
 package Pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.*;
 
 import java.util.List;
 
@@ -34,6 +32,21 @@ public class WatchlistPage {
   @FindBy(how = How.XPATH, using = "//*[@id=\"page-1\"]/div")
   public WebElement notEmptyWatchlistChecker;
 
+  @FindBy(how = How.XPATH, using = "//a[@title='Edit']")
+  public WebElement btnEdit;
+
+  @FindBy(how = How.XPATH, using = "//button[contains(text(),'Done')]")
+  public WebElement btnDone;
+
+  @FindBy(how = How.XPATH, using = "//input[@value='1']")
+  public WebElement firstInput;
+
+  @FindBy(how = How.XPATH, using = "//input[@value='3']")
+  public WebElement thirdInput;
+
+  @FindBy(how = How.ID, using = "reorderButton")
+  public WebElement popUpConfirm;
+
   public void clickOnWatchlist() {
     userWatchlist.click();
   }
@@ -59,4 +72,23 @@ public class WatchlistPage {
   public void addChecker() {
     Assert.assertTrue(notEmptyWatchlistChecker.isDisplayed());
   }
+
+  public void clickOnBtnEdit() {
+    btnEdit.click();
+  }
+
+  public void editRedirectChecker() {
+    Assert.assertTrue(btnDone.isDisplayed());
+  }
+
+  public void switchElements() {
+    firstInput.sendKeys(Keys.BACK_SPACE, "3");
+    thirdInput.sendKeys(Keys.BACK_SPACE, "1");
+  }
+
+  public void confirmEdit() {
+    btnDone.click();
+    popUpConfirm.click();
+  }
+
 }
