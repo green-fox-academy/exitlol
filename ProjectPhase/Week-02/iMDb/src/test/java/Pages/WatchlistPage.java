@@ -47,6 +47,16 @@ public class WatchlistPage {
   @FindBy(how = How.ID, using = "reorderButton")
   public WebElement popUpConfirm;
 
+  @FindBy(how = How.XPATH, using = "//select[@class='lister-sort-by']")
+  public WebElement sortBySelection;
+
+  @FindBy(how = How.XPATH, using = "//span[@data-reactid='.1.2.0.$/=1$li1350292041.$li1350292041.1.1.4.0.1']")
+  public WebElement firstSortedMovie;
+
+  @FindBy(how = How.XPATH, using = "//span[@data-reactid='.1.2.0.$=1$li1350292044.1.1.4.0.1']")
+  public WebElement secondSortedMovie;
+
+
   public void clickOnWatchlist() {
     userWatchlist.click();
   }
@@ -64,7 +74,7 @@ public class WatchlistPage {
   }
 
   public void addToWatchlist(int numOfMovies) {
-    for (int i = 0; i < numOfMovies; i ++) {
+    for (int i = 0; i < numOfMovies; i++) {
       addRibbons.get(i).click();
     }
   }
@@ -91,4 +101,9 @@ public class WatchlistPage {
     popUpConfirm.click();
   }
 
+  public void sortChecker() {
+    float firstRating = Float.parseFloat(firstSortedMovie.getText());
+    float secondRating = Float.parseFloat(secondSortedMovie.getText());
+    Assert.assertTrue(firstRating > secondRating);
+  }
 }

@@ -1,6 +1,7 @@
 package Steps;
 
 import Base.BaseUtil;
+import Pages.WatchlistPage;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -23,22 +24,21 @@ public class WatchListSortSteps extends BaseUtil {
 
   @Given("^User is on watchlist page$")
   public void userIsOnWatchlistPage() throws Throwable {
-    Assert.assertTrue(base.driver.findElement(By.xpath("//*[@id=\"page-1\"]")).isDisplayed());
+    WatchlistPage page = new WatchlistPage(base.driver);
+    page.addChecker();
   }
 
   @And("^User can sort by popularity$")
   public void userCanSortBy() throws Throwable {
-    Thread.sleep(1000);
-    Select sorter = new Select(base.driver.findElement(By.xpath("//*[@id=\"center-1-react\"]/div/div[2]/div[1]/div[1]/div[1]/select")));
+    WatchlistPage page = new WatchlistPage(base.driver);
+    //Thread.sleep(1000);
+    Select sorter = new Select(page.sortBySelection);
     sorter.selectByIndex(2);
   }
 
   @Then("^User should see the ordered list$")
   public void userShouldSeeTheOrderedList() throws Throwable {
-    WebElement firstMovie = base.driver.findElement(By.xpath("//*[@id=\"page-1\"]/div/div/div[2]/div[1]/div[1]/span[2]"));
-    WebElement secondMovie = base.driver.findElement(By.xpath("//*[@id=\"center-1-react\"]/div/div[3]/div/div[2]/div/div[2]/div[1]/div[1]/span[2]"));
-    float firstRating = Float.parseFloat(firstMovie.getText());
-    float secondRating = Float.parseFloat(secondMovie.getText());
-    Assert.assertTrue(firstRating > secondRating);
+    WatchlistPage page = new WatchlistPage(base.driver);
+    page.sortChecker();
   }
 }
