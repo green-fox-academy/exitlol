@@ -9,6 +9,6 @@ Feature: This deals with the Recently Viewed functionality of IMDb
 
     Scenario: View recently viewed movies on page
       Given User is on watchlist page
-      And User scrolls down until "Recently Viewed" is visible
+      And User scrolls down until Recently Viewed is visible
       And User not visited any movie sites
       Then User should see an empty space

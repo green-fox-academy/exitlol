@@ -56,6 +56,11 @@ public class WatchlistPage {
   @FindBy(how = How.XPATH, using = "//span[@data-reactid='.1.2.0.$=1$li1350292044.1.1.4.0.1']")
   public WebElement secondSortedMovie;
 
+  @FindBy(how = How.XPATH, using = "//h3[contains(text(),'Recently Viewed')]")
+  public  WebElement recentIsVisible;
+
+  @FindBy(how = How.XPATH, using = "/html[1]/body[1]/div[2]/div[1]/div[5]/div[1]/div[2]")
+  public WebElement recentlyViewed;
 
   public void clickOnWatchlist() {
     userWatchlist.click();
@@ -105,5 +110,13 @@ public class WatchlistPage {
     float firstRating = Float.parseFloat(firstSortedMovie.getText());
     float secondRating = Float.parseFloat(secondSortedMovie.getText());
     Assert.assertTrue(firstRating > secondRating);
+  }
+
+  public void recentVisibleChecker() {
+    Assert.assertTrue(recentIsVisible.isDisplayed());
+  }
+
+  public void recentlyViewedStatus() {
+
   }
 }
