@@ -23,15 +23,21 @@ public class RecentlyViewedSteps extends BaseUtil {
     jse.executeScript("window.scrollBy(0,600)", "");
   }
 
-  @And("^User not visited any movie sites$")
-  public void userNotVisitedAnyMovieSites() throws Throwable {
+  @And("^User clicks on movie thumbnail$")
+  public void userClicksOnMovieThumbnail() throws Throwable {
     WatchlistPage page = new WatchlistPage(base.driver);
-    page.recentVisibleChecker();
+    page.visitMoviePage();
   }
 
-  @Then("^User should see an empty space$")
-  public void userShouldSeeAnEmptySpace() throws Throwable {
+  @And("^User gets back to watchlist page$")
+  public void userGetsBackToWatchlistPage() throws Throwable {
     WatchlistPage page = new WatchlistPage(base.driver);
-    page.recentlyViewedStatus();
+    page.clickOnWatchlist();
+  }
+
+  @Then("^User should see the previously watched movie's thumbnail$")
+  public void userShouldSeeThePreviouslyWatchedMovieSThumbnail() throws Throwable {
+    WatchlistPage page = new WatchlistPage(base.driver);
+    page.recentlyViewedChecker();
   }
 }

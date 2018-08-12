@@ -10,5 +10,6 @@ Feature: This deals with the Recently Viewed functionality of IMDb
     Scenario: View recently viewed movies on page
       Given User is on watchlist page
       And User scrolls down until Recently Viewed is visible
-      And User not visited any movie sites
-      Then User should see an empty space
+      And User clicks on movie thumbnail
+      And User gets back to watchlist page
+      Then User should see the previously watched movie's thumbnail
