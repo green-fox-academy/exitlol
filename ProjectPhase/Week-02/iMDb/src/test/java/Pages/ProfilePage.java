@@ -1,6 +1,7 @@
 package Pages;
 
 
+import cucumber.api.java.en_lol.WEN;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,11 +31,32 @@ public class ProfilePage {
           "Watchlist')]")
   public WebElement yourWatchList;
 
+  @FindBy(how = How.XPATH, using = "//a[@href='/user/ur90916164/ratings']")
+  public WebElement yourRating;
+
+  @FindBy(how = How.XPATH, using = "//a[contains(text(),'The Dark Knight')]")
+  public WebElement ratedMovieName;
+
+  @FindBy(how = How.XPATH, using = "//h1[@class='header']")
+  public WebElement ratingHeader;
+
   public void profilePageChecker() {
     Assert.assertTrue(editDescription.isDisplayed());
   }
 
   public void activityPageChecker() {
-    Assert.assertTrue(profileChecklist.isDisplayed() && yourRatings.isDisplayed() &&yourLists.isDisplayed() &&yourWatchList.isDisplayed());
+    Assert.assertTrue(profileChecklist.isDisplayed() && yourRatings.isDisplayed() && yourLists.isDisplayed() && yourWatchList.isDisplayed());
+  }
+
+  public void clickOnRating() {
+    yourRating.click();
+  }
+
+  public void ratingRedirectChecker() {
+    Assert.assertTrue(ratingHeader.getText().contains("Your Ratings"));
+  }
+
+  public void movieChecker() {
+    Assert.assertTrue(ratedMovieName.getText().contains("The Dark Knight"));
   }
 }
