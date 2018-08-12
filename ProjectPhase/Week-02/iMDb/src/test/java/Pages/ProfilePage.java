@@ -40,6 +40,12 @@ public class ProfilePage {
   @FindBy(how = How.XPATH, using = "//h1[@class='header']")
   public WebElement ratingHeader;
 
+  @FindBy(how = How.ID, using = "nblogout")
+  public WebElement logout;
+
+  @FindBy(how = How.ID, using = "navUserMenu")
+  public WebElement profile;
+
   public void profilePageChecker() {
     Assert.assertTrue(editDescription.isDisplayed());
   }
@@ -58,5 +64,9 @@ public class ProfilePage {
 
   public void movieChecker() {
     Assert.assertTrue(ratedMovieName.getText().contains("The Dark Knight"));
+  }
+
+  public void clickOnLogout() {
+    logout.click();
   }
 }
