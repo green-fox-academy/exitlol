@@ -40,11 +40,14 @@ public class ProfilePage {
   @FindBy(how = How.XPATH, using = "//h1[@class='header']")
   public WebElement ratingHeader;
 
-  @FindBy(how = How.ID, using = "nblogout")
+  @FindBy(how = How.LINK_TEXT, using = "Log Out")
   public WebElement logout;
 
   @FindBy(how = How.ID, using = "navUserMenu")
   public WebElement profile;
+
+  @FindBy(how = How.XPATH, using = "//a[@id='nblogin']")
+  public WebElement logoutMethod;
 
   public void profilePageChecker() {
     Assert.assertTrue(editDescription.isDisplayed());
@@ -68,5 +71,10 @@ public class ProfilePage {
 
   public void clickOnLogout() {
     logout.click();
+  }
+
+  public void checkifLoggedOut() {
+    String logoutText = logoutMethod.getText();
+    Assert.assertTrue(logoutText.contains("Sign in options"));
   }
 }

@@ -7,6 +7,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.interactions.Actions;
 
+import java.util.concurrent.TimeUnit;
+
 public class LogoutSteps extends BaseUtil {
 
   public BaseUtil base;
@@ -20,11 +22,13 @@ public class LogoutSteps extends BaseUtil {
     ProfilePage profile = new ProfilePage(base.driver);
     Actions action = new Actions(base.driver);
     action.moveToElement(profile.profile).perform();
+    base.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     profile.clickOnLogout();
   }
 
   @Then("^User should be redirected to logout page$")
   public void userShouldBeRedirectedToLogoutPage() throws Throwable {
-
+    ProfilePage logoutPage = new ProfilePage(base.driver);
+    logoutPage.checkifLoggedOut();
   }
 }
